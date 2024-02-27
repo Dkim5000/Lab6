@@ -28,26 +28,27 @@ int main() {
 	foregroundImage = foregroundTex.copyToImage();
 
 	Vector2u sz = backgroundImage.getSize();
+	Color example = foregroundImage.getPixel(0, 0);
 	for (int y = 0; y < sz.y; y++) {
-		for (int x = 0; x < sz.x; x++) {
+		for (int x = 0; x < sz.x; x++) { 
 			// These two loops will run the code inside for each pixel in the background image
 				// You can access the current pixel at x,y like so:
-				Color example = foregroundImage.getPixel(0, 0); 
-				if (example == foregroundImage.getPixel(0, 0) {
-					Color snow = backgroundImage.getPixel(x, y);
-					Color mixed(
-						example.r / 2 + snow.r / 2,
-						example.g / 2 + snow.g / 2,
-						example.b / 2 + snow.b / 2);
-						backgroundImage.setPixel(x, y, mixed);
-			// Color objects store the individual channel values like example.r example.g and example.b
+			if (example == foregroundImage.getPixel(x, y)) {    
+				Color snow = backgroundImage.getPixel(x, y); 
+				Color mixed( 
+					example.r / 2 + snow.r / 2, 
+					example.g / 2 + snow.g / 2, 
+					example.b / 2 + snow.b / 2); 
+				foregroundImage.setPixel(x, y, snow);
+				// Color objects store the individual channel values like example.r example.g and example.b
+			}
 		}
 	}
 	// By default, just show the foreground image
 	RenderWindow window(VideoMode(1024, 768), "Here's the output");
 	Sprite sprite1;
 	Texture tex1;
-	tex1.loadFromImage(backgroundImage);   
+	tex1.loadFromImage(foregroundImage);  
 	sprite1.setTexture(tex1);
 	window.clear();
 	window.draw(sprite1);
